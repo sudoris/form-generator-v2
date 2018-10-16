@@ -3,6 +3,7 @@
         <div>
             <label v-bind:for="fieldParams.fieldName">{{ fieldParams.label }}:</label>
             <input id="text-input" type="text" v-bind:name="fieldParams.fieldName" v-model="value[fieldParams.fieldName]">
+            
         </div>            
     </div>
 </template>
@@ -19,7 +20,13 @@ export default {
         return {
             
         }
-    }
+    },
+    // watch: {
+    //   value: function() {
+    //     this.$emit('input', this.value)
+    //   }
+    // }
+
     
 }
 </script>

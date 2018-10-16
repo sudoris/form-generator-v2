@@ -1,6 +1,6 @@
 <template>
-    <div>       
-        {{ value }}::: 
+    <div>      
+        
         <fieldset>            
           <legend>{{ fieldParams.label }}</legend>          
           <!-- use for loop to dynamically render necessary radio inputs -->
@@ -9,6 +9,8 @@
           
           <input type="radio" :id="fieldParams.values[1]" :value="fieldParams.values[1]" v-model="value[fieldParams.fieldName]">
           <label :for="fieldParams.values[1]">{{ fieldParams.values[1] }}</label>
+          
+          
           <br>
         </fieldset>            
     </div>
@@ -26,7 +28,12 @@ export default {
         return {
             
         }
-    }
+    },
+    // watch: {
+    //   value: function() {
+    //     this.$emit('input', this.value)
+    //   }
+    // }
     
 }
 </script>
