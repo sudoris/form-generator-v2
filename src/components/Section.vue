@@ -63,16 +63,16 @@ export default {
         test: {}
       },
       sectionData: { 
-        productId: "10",
-        productName: "SNES",
-        available: "Yes",
-        car: {
-          carModel: "Civic",
-          color: "Black",
-          addons: {
-            turbo: "No"
-          }
-        }        
+        // productId: "10",
+        // productName: "SNES",
+        // available: "Yes",
+        // car: {
+        //   carModel: "Civic",
+        //   color: "Black",
+        //   addons: {
+        //     turbo: "No"
+        //   }
+        // }        
       },
       sectionSchema: {
         $schema: "http://json-schema.org/draft-07/schema#",
@@ -85,7 +85,7 @@ export default {
             description: "The unique identifier for a product",
             type: "string",
             label: "Product Id",
-            fieldName: "productId"
+            fieldName: "productId",            
               // attrs/metadata: {
               //   placeholder: "Id of product",
               //   title: "Please enter product Id"
