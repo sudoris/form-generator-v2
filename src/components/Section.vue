@@ -1,29 +1,18 @@
 <template>
   <div>
     <div v-for="(field, key) in sectionSchema.properties" :key="key">   
-      <!-- <div v-if="field.type != 'object'"> -->
-        <component :is="getComponentName(field.type)" v-bind:fieldParams="field" v-model="sectionData" ></component>
-      <!-- </div>                    -->
-      <!-- <div v-else-if="field.type === 'object'">
-        {{ initEmptyObject(field.fieldName) }}
-        <div v-for="(nestedField, key) in field.properties" :key="key">                      
-          <component :is="getComponentName(nestedField.type)" v-bind:fieldParams="nestedField" v-model="sectionData[field.fieldName]" ></component>
-        </div>
-      </div> -->
-      <!-- <div v-if="field.properties">
-        <p>FOUND NESTING</p>
-        <p>{{ field.fieldName }}</p>
-        <div v-for="(nestedField, key) in field.properties" :key="key">                      
-          <component :is="getComponentName(nestedField.type)" v-bind:fieldParams="nestedField" v-model="sectionData[key]" ></component>
-      </div>
-      <br>                
-      </div>            -->
+        
+        <fieldset>
+          <!-- <div class="field-title"></div> -->
+          <legend class="field-title">{{ field.description}}</legend>          
+          <component :is="getComponentName(field.type)" v-bind:fieldParams="field" v-model="sectionData" ></component>
+          
+        </fieldset>
+      
       <br>
     </div>
 
-    <!-- <input type="text" v-model="garbageData.test">
-
-    {{  }} -->
+    
     {{ sectionData }}
   </div>
 </template>
@@ -31,6 +20,7 @@
 <script>
 import TextInput from "./input_components/TextInput"
 import RadioInput from "./input_components/RadioInput"
+import CheckList from "./input_components/CheckList"
 import ObjectComponent from "./utility_components/ObjectComponent"
 
 export default {
@@ -38,7 +28,8 @@ export default {
   components: {
     TextInput,
     RadioInput,
-    ObjectComponent
+    ObjectComponent,    
+    CheckList
   },
   methods: {        
     getComponentName(type) {
@@ -50,6 +41,9 @@ export default {
       }
       else if (type === 'object') {
         return 'ObjectComponent'
+      }
+      else if (type === 'checklist') {
+        return 'CheckList'
       }
     },
     initEmptyObject(objectKey) {
@@ -73,10 +67,10 @@ export default {
         productName: "SNES",
         available: "Yes",
         car: {
-          carModel: "Ferrari",
+          carModel: "Civic",
           color: "Black",
-          myObject: {
-            innerObject: "another thing"
+          addons: {
+            turbo: "No"
           }
         }        
       },
@@ -111,38 +105,53 @@ export default {
             values: ['Yes', 'No'],            
           },
           car: {
-            description: "blah",
+            description: "Vehicle Information",
             type: 'object',
             fieldName: "car",
             properties: {
               carModel: {
-                description: "Model of car",
+                description: "model of car",
                 type: "radio",
                 fieldName: "carModel",
                 label: "Model",
-                values: ['Ferrari', 'Viper'],            
+                values: ['Civic', 'GTR'],            
               },
               color: {
                 description: "color of car",
                 type: "string",
                 fieldName: "color",
                 label: "Car Color"
-              },
-              myObject: {
+              },              
+              addons: {
                 type: 'object',
-                fieldName: 'myObject',
+                fieldName: 'addons',
                 properties: {
-                  innerObject: {
-                     description: "Model of car",
+                  turbo: {
+                     description: "turbo",
                      type: "radio",
-                     fieldName: "innerObject",
-                     label: "Inner Object",
-                     values: ['something', 'another thing'],        
+                     fieldName: "turbo",
+                     label: "Turbo",
+                     values: ['Yes', 'No']        
+                  },
+                  dogs: {
+                    description: "man's best friend",
+                    type: "checklist",
+                    fieldName: "dogs",
+                    label: "Dogs you like",
+                    values: ['Dachshund', 'Golden', 'Corgi', 'Shiba']
                   }
                 }
               }
-            }
+            }            
           }
+          // dogs: {
+          //   description: "man's best friend",
+          //   type: "checklist",
+          //   fieldName: "dogs",
+          //   label: "Dogs you like",
+          //   values: ['Dachshund', 'Golden', 'Corgi', 'Shiba']
+          // }
+          
         },
         required: [ "productId" ]
       }      
@@ -152,5 +161,8 @@ export default {
 </script>
 
 <style>
+.field-title {
+  color: blueviolet;
+}
 
 </style>
