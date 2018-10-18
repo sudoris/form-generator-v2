@@ -2,20 +2,16 @@
   <div>    
       
     <div v-for="(field, key) in fieldParams.properties" :key="key">   
-      <!-- <div v-if="getComponentName(field.type) === 'ObjectComponent'"></div>            -->
+      
       <fieldset>
-        <!-- <legend class="field-title">{{ fieldParams.properties.description }}</legend>  -->
+        
         <component 
           :is="getComponentName(field.type)" 
           v-bind:fieldParams="field" 
           v-model="value[currentFieldName]" >         
         </component>   
       </fieldset>
-      <!-- <component 
-        :is="getComponentName(field.type)" 
-        v-bind:fieldParams="field" 
-        v-model="value[currentFieldName]" >         
-      </component>    -->
+      
             
       
                                    

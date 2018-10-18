@@ -32,7 +32,9 @@ export default {
     },
     // watch: {
     //   value: function() {
-    //     this.$emit('input', this.value)
+    //     if (fieldParams.attr.hasDependents) {
+    //         this.$emit('dependency', this.value)
+    //     }        
     //   }
     // }
     
