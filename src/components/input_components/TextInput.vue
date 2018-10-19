@@ -1,23 +1,20 @@
 <template>      
-    <div>
-        
-          
-        <div v-if="showInputField">
-            <label v-bind:for="fieldParams.fieldName">{{ fieldParams.label }}:</label>
-            <input id="text-input" type="text" v-bind:name="fieldParams.fieldName" v-model="value[fieldParams.fieldName]">
-            <br>
-						<br>
-						{{ value }}
-						<br>
-            <br>
+	<div>
+		<div v-if="showInputField">
+			<label v-bind:for="fieldParams.fieldName">{{ fieldParams.label }}:</label>
+			<input id="text-input" type="text" v-bind:name="fieldParams.fieldName" v-model="value[fieldParams.fieldName]">
+			<br>
+			<br>
+			{{ value }}
+			<br>
+			<br>
 
-						{{ fieldParams }}
-            
-            <br>
-            <br>
-            
-        </div>            
-    </div>
+			{{ fieldParams }}
+					
+			<br>
+			<br>
+		</div>            
+	</div>
 </template>
 
 <script>
